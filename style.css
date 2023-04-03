@@ -1,0 +1,56 @@
+body{
+    background-color: blue;
+}
+
+.container{
+    max-width: 400px;
+}
+
+.form-check{
+    width:350px;
+}
+
+.selector{
+    
+    width: 50%;
+    height:50px;
+    margin-top: 20%;
+    margin-left:35%;
+}
+
+h1{
+    font-family: cursive;
+    text-align: center;
+    color: white;
+}
+
+.selector button{
+    padding: 20px;
+}
+
+.new-input{
+    width: 40%;
+    height:150px;
+    background-color: yellow;
+    margin: 2% auto;
+}
+
+.new-input h3 , h4{
+    font-family: cursive;
+    text-align: center;
+    position: relative;
+    top: 25%;
+}
+
+.todos{
+    width: 30%;
+    height: auto;
+    background-color: yellow;
+}
+
+li{
+    border: 1px solid black;
+    margin: 2% auto;
+    padding: 20px;
+    background-color: aquamarine;
+}
