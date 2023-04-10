@@ -3,9 +3,8 @@ const date=document.querySelector('#startDate');
 const sub=document.querySelector('.user-input');
 const submitted=document.querySelector('.new-input');
 const gettodos=document.querySelector('.todos');
-const items =document.querySelectorAll('li');
 
-const getelement=()=>{
+if(sub){
 sub.addEventListener('submit', e =>{
     e.preventDefault();
     console.log("click go here");
@@ -44,19 +43,56 @@ const display=(todo, id)=>{
     </li>`;
     gettodos.innerHTML+=html;
 }
-
-
-
-const fetchdata = ()=>
-{
-    db.collection('todos').where('Status', '==','Pending').orderBy('Created_at').get().then((snapshot)=>{
-        snapshot.docs.forEach(doc=>{
-            display(doc.data(), doc.id);
-        })
-        }).catch((err)=>{
-            console.log(err);
+const deletetodo=(id)=>{
+    const items =document.querySelectorAll('li');
+    items.forEach(item=>{
+        if(item.getAttribute('data-id') === id)
+        {
+            item.remove();
+        }
     });
 }
+
+db.collection('todos').onSnapshot(snapshot=>{
+    snapshot.docChanges().forEach(change=>{
+        const doc=change.doc;
+        if(change.type==='added'){
+            display(doc.data(), doc.id);
+        }
+        else if(change.type === 'removed')
+        {
+            console.log(change.type);
+            deletetodo(doc.id);
+        }
+    })
+});
+// const unsub= db.collection('todos').where('Status', '==','Pending').orderBy('Created_at').onSnapshot(snapshot=>{
+//     snapshot.docChanges().forEach(change=>{
+//         const doc=change.doc;
+//         if(change.type==='added')
+//         {
+//             display(doc.data(), doc.id);
+//         }else if(change.type==='removed')
+//         {
+//             deletetodo(doc.id);
+//         }
+       
+//     })
+//     }).catch((err)=>{
+//         console.log(err);
+// });
+
+
+// const fetchdata = ()=>
+// {
+//     db.collection('todos').where('Status', '==','Pending').orderBy('Created_at').get().then((snapshot)=>{
+//         snapshot.docs.forEach(doc=>{
+//             display(doc.data(), doc.id);
+//         })
+//         }).catch((err)=>{
+//             console.log(err);
+//     });
+// }
 
 
 const presentNewDate=()=>{
@@ -67,8 +103,11 @@ const presentNewDate=()=>{
     pageRedirect();
 }
 
-// getelement();
-fetchdata();
+
+
+
+
+ 
 function pageRedirect(){
     var delay = 4000; // time in milliseconds
   
@@ -77,37 +116,17 @@ function pageRedirect(){
     },delay);
  }
 
- const deletetodo=()=>{
-
-    gettodos.addEventListener('click', e =>{
-        if(e.target.tagName ==='BUTTON')
-        {
-            if(e.target.childNodes[0].data === 'Delete'){
-                console.log("delete got clicked");
-                const id=e.target.parentElement.getAttribute('data-id');
-                db.collection('todos').doc(id).delete();
-                items.forEach(item=>{
-                    if(item.getAttribute('data-id')===id)
-                    {
-                        item.remove();
-                    }
-                })
-            }
+ gettodos.addEventListener('click', e =>{
+    if(e.target.tagName ==='BUTTON')
+    {
+        if(e.target.childNodes[0].data === 'Delete'){
+            console.log("delete got clicked");
+            const id=e.target.parentElement.getAttribute('data-id');
+            db.collection('todos').doc(id).delete();
         }
-    });
- }
-
-//  const unsub= db.collection('todos').where('Status', '==','Pending').orderBy('Created_at').onSnapshotget(snapshot=>{
-//     snapshot.docChanges().forEach(change=>{
-//         const doc=change.doc;
-//         if(change.type==='added')
-//         {
-//             display(doc.data(), doc.id);
-//         }else if(change.type==='removed')
-       
-//     })
-//     }).catch((err)=>{
-//         console.log(err);
-// });
- deletetodo();
-
+        // else if (e.target.childNodes[0].data === 'update'){
+        //     const item=document.querySelector('li');
+        //     console.log(item.childNodes);
+        // }
+    }
+});
