@@ -9,6 +9,7 @@
 
 </head>
 <body>
+
   <h2 class="myitems">
     Here are all your todos
   </h2>
@@ -17,8 +18,39 @@
       <div class="todos">
 
       </div>
-       
+  
     </div>
+    <div class="container users">
+      <form class="user-input  text-light">
+          <div class="my-5">
+              <p class="lead font-weight-normal text-center">
+                  What would you like to do today?
+              </p>
+              <div class="class form-check my-2  text-white-50">
+                  <input type="text" class="form-control m-auto activity" name="activity" type="text" required>
+              </div>
+
+              <p class="lead font-weight-normal text-center my-2">
+                  Describe what this activity is about
+              </p>
+              <div class="class form-check my-2  text-white-50">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+              </div>
+              <p class="lead font-weight-normal text-center">
+                  When would you like to carry out this task
+              </p>
+              <div class="class form-check my-2  text-white-50">
+                  <input id="startDate" class="form-control" type="date" required/>
+              </div>
+              <div class="text-center submission">
+                  <input type ="submit" class="btn btn-light my-3">
+                </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+</div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 

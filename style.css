@@ -79,3 +79,20 @@ button{
     width: 90%;
     margin: 2% auto;
 }
+
+.save{
+    display: none;
+}
+
+.users{
+    display: none;
+    width: 80%;
+    margin: 20px auto;
+    color: white;
+    height:400px;
+    background-color:darkgray;
+}
+
+.users div{
+padding: 10px;
+}
