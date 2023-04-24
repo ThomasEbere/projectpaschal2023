@@ -21,7 +21,7 @@
   
     </div>
     <div class="container users">
-      <form class="user-input  text-light">
+      <form class="user-input update-input text-light">
           <div class="my-5">
               <p class="lead font-weight-normal text-center">
                   What would you like to do today?
@@ -36,6 +36,19 @@
               <div class="class form-check my-2  text-white-50">
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
               </div>
+              <p class="lead font-weight-normal text-center my-2">
+                What is the status of this event?
+            </p>
+            <div class="class form-check my-2  text-white-50">
+              <select name="status" id="cars" onchange="this.className=this.options[this.selectedIndex].className"
+              class="pending">
+                
+                <option  class="pending" value="Pending">Pending</option>
+                <option value="Completed" class="completed">Completed</option>
+                <option value="Inprogress" class="inprogress">Inprogress</option>
+              </optgroup>
+              </select>          
+            </div>
               <p class="lead font-weight-normal text-center">
                   When would you like to carry out this task
               </p>

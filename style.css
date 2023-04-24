@@ -89,10 +89,28 @@ button{
     width: 80%;
     margin: 20px auto;
     color: white;
-    height:400px;
+    height:auto;
     background-color:darkgray;
 }
 
 .users div{
 padding: 10px;
+}
+
+option{
+    font-family: cursive;
+    font-size: 20px;
+}
+.pending{
+    background-color: red;
+    color: white;
+}
+
+.completed{
+    background-color: green;
+}
+
+.inprogress
+{
+    background-color: yellow;
 }

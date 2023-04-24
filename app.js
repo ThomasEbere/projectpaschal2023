@@ -1,6 +1,7 @@
 
 const date=document.querySelector('#startDate');
 const sub=document.querySelector('.user-input');
+const subb=document.querySelector('.update-input');
 const submitted=document.querySelector('.new-input');
 const gettodos=document.querySelector('.todos');
 const newform=document.querySelector('.users');
@@ -108,7 +109,7 @@ db.collection('todos').onSnapshot(snapshot=>{
 
 // fetchdata();
 
-const presentNewDate=()=>{
+presentNewDate=function(){
     console.log("this function was called");
     sub.reset();
     sub.classList.add('d-none');
@@ -133,7 +134,8 @@ function pageRedirect(){
 
 
 if (gettodos) {
-    gettodos.addEventListener('click', e =>{
+    gettodos.addEventListener('click', e =>
+    {
         if(e.target.tagName ==='BUTTON')
         {
             if(e.target.childNodes[0].data === 'Delete'){ 
@@ -142,22 +144,51 @@ if (gettodos) {
                 db.collection('todos').doc(id).delete();
             }
             else if (e.target.childNodes[0].data === 'update'){
-                const items=document.querySelector('li');
-                const myinitems=(items.getElementsByTagName('div'));
-                for(let i=0,j =0; i<myinitems.length, i<arrayelement.length; i++, j++)
-                {
-                    arrayelement[i]=myinitems[i].firstChild.nextSibling.data
-                }
-                console.log(arrayelement[1]);
-                mytodo.remove();
-                newform.style.setProperty('display','block');
-                sub.activity.value=(arrayelement[1]);
-                myitems.innerText="Update your todos";
-                console.log(items.getAttribute('data-id'));
+                const items=document.querySelectorAll('li');
+                const newid=e.target.parentElement.getAttribute('data-id');
+                items.forEach(item=>{
+                    if(item.getAttribute('data-id')==newid){
+                        const myinitems=(item.getElementsByTagName('div'));
+                        for(let i=0; i<myinitems.length, i<arrayelement.length; i++)
+                        {
+                        arrayelement[i]=myinitems[i].firstChild.nextSibling.data
+                        }
+                        console.log(arrayelement);
+                        }
+                    })
+                    mytodo.remove();
+                    newform.style.setProperty('display','block');
+                    sub.activity.value=(arrayelement[0]);
+                    sub.exampleFormControlTextarea1.value=(arrayelement[1]);
+                    sub.startDate.value=(arrayelement[3]);
 
+                    // function formatDate(arrayelement[3]) 
+                    // {
+                    //     var d = new Date(arrayelement[3]),
+                    //         month = '' + (d.getMonth() + 1),
+                    //         day = '' + d.getDate(),
+                    //         year = d.getFullYear();
+                    
+                    //     if (month.length < 2) 
+                    //         month = '0' + month;
+                    //     if (day.length < 2) 
+                    //         day = '0' + day;
+                    
+                    //     return [year, month, day].join('-');
+                    // }
+                    console.log(arrayelement[3].toISOString().split('T')[0]);
+                    myitems.innerText="Update your todos";
+                //     sub.addEventListener('submit', e =>{
+                //     e.preventDefault();
+                //     console.log(sub.activity.value);
+                //     console.log(sub.exampleFormControlTextarea1.value);
+                //     console.log(sub.status.value);
+                //     console.log(sub.startDate.value);
+                // });
             }
         }
     });
- }
+}
+    
 
 
