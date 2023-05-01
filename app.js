@@ -117,11 +117,6 @@ presentNewDate=function(){
     pageRedirect();
 }
 
-
-
-
-
- 
 function pageRedirect(){
     var delay = 4000; // time in milliseconds
   
@@ -130,7 +125,7 @@ function pageRedirect(){
     },delay);
  }
 
- arrayelement=["Activity", "Description","Status","carryout_date"]
+ arrayelement=["Activity", "Description","Status","carryout_date", "created_date"]
 
 
 if (gettodos) {
@@ -154,13 +149,40 @@ if (gettodos) {
                         arrayelement[i]=myinitems[i].firstChild.nextSibling.data
                         }
                         console.log(arrayelement);
+                        console.log(arrayelement[4]);
                         }
                     })
                     mytodo.remove();
+                    myitems.innerText="Update your todos";
                     newform.style.setProperty('display','block');
-                    sub.activity.value=(arrayelement[0]);
-                    sub.exampleFormControlTextarea1.value=(arrayelement[1]);
-                    sub.startDate.value=(arrayelement[3]);
+                    subb.activity.value=(arrayelement[0]);
+                    subb.exampleFormControlTextarea1.value=(arrayelement[1]);
+                    subb.startDate.value=(arrayelement[3]);
+                    subb.addEventListener('submit', e=>{
+                        e.preventDefault();
+                        console.log(subb.activity.value);
+                        console.log(subb.exampleFormControlTextarea1.value);
+                        console.log(subb.startDate.value);
+                        console.log(subb.status.value);
+
+                        let newString=new Date(arrayelement[4]).toISOString();
+                        let mystring=firebase.firestore.Timestamp.fromDate(new Date(arrayelement[4]));
+                        console.log(newString);
+                        console.log("This is the date time value here "+mystring);
+                        const newTodo={  
+                            Activity:subb.activity.value,
+                            Created_at:mystring,
+                            DateofActivity:subb.startDate.value,
+                            Description:subb.exampleFormControlTextarea1.value,
+                            Status:subb.status.value
+                        };
+                        console.log(newTodo);
+                        db.collection('todos').doc(newid).update(newTodo).then((result)=>{
+                            console.log(result);
+                        }).catch(err =>{
+                            console.log(err);
+                        });
+                    })
 
                     // function formatDate(arrayelement[3]) 
                     // {
@@ -176,7 +198,6 @@ if (gettodos) {
                     
                     //     return [year, month, day].join('-');
                     // }
-                    console.log(arrayelement[3].toISOString().split('T')[0]);
                     myitems.innerText="Update your todos";
                 //     sub.addEventListener('submit', e =>{
                 //     e.preventDefault();

@@ -1,0 +1,13 @@
+create todo
+view all todos
+delete todos
+update todos
+view completed todos
+view todos in progress
+view not yet started todos
+create login page
+create sign up page
+
+upnext
+Add password field
+when user logs in, take user to page where they can view their own all todos, create todos, view pending todos,view completed todos and view todos inprogress 

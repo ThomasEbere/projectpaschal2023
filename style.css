@@ -114,3 +114,59 @@ option{
 {
     background-color: yellow;
 }
+
+.mybody{
+    background-color: gold;
+}
+
+.forms{
+    width: 30%;
+    height: 300px;
+    background-color: green;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
+
+.forms div{
+    width: 60%;
+    height: 30px;
+    padding: 10px;
+    left: 17%;
+
+}
+
+.firstname{
+    background-color: red;
+    position: absolute;
+    top: 20%;
+}
+
+.lastname{
+    background-color: red;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+
+}
+
+.lastname .firstname, input, label{
+    padding: 5px;
+    width: 60%;
+}
+
+.forms .submit
+{
+    position: absolute;
+    left: 30%;
+    top: 75%;
+}
+
+.todoh2{
+    font-family: cursive;
+    text-align: center;
+}
+
+.todoh1{
+    color: black;
+}
