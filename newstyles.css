@@ -1,0 +1,159 @@
+body{
+    background-color:#FF1D58;
+    margin: -25px;
+}
+
+.mybody{
+    margin: 0;
+}
+h1,h2{
+    text-align: center;
+    font-family: cursive;
+    font-weight: 15px;
+}
+
+.mydiv{
+    width: 50%;
+    height: 500px;
+    background-color: #FFF685;
+    margin: 3% auto;
+}
+input{
+    float: right;
+    padding: 10px;
+    margin-right: 5%;
+    padding: 5px 7px;
+    width: 50%;
+    margin-top: 10px;
+}
+
+label{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    padding: 10px 10px;
+    font-weight: bold;
+    margin-top: 10%;
+    position: relative;
+    top:10px;
+}
+
+.newdiv{
+    width:90%;
+    height: 50px;
+    background-color: #00DDFF;
+    margin: 10px;
+}
+
+.innerdiv{
+    height: 350px;
+    width: 80%;
+    position: relative;
+    top: 40px;
+    margin: 0px auto;
+}
+
+.innerdiv .lastdiv
+{
+    width: 30%;
+    margin: 20px auto;
+}
+
+.lastdiv input{
+    margin-top: 2%;
+    margin-left: 30px;
+    float: none;
+    padding : 10px 10px;
+    width: 70%;
+}
+
+.admin{
+    background-color: #9DF9EF;
+}
+
+.mydiv .myadmin{
+    top: 60px;
+}
+
+.topdiv
+{
+    height: 400px;
+}
+
+.sign
+{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+}
+header{
+    width: 100%;
+    background-color: #0049B7;
+    height: 50px;
+    position: relative;
+    top: 0;
+}
+.mydiv .login
+{
+    top: 15px;
+}
+
+.mydiv .logged{
+    top: 42%;
+    left: 72%;
+}
+.login input{
+    margin-right: 6%;
+}
+
+.login .newdiv{
+    width: 70%;
+    margin: 10px auto;
+}
+
+.login .lastdiv{
+    width: 30%;
+    margin-top: 5%;
+}
+
+.login .lastdiv input{
+margin-left: 28px;
+margin-top: 3%;
+}
+
+.thelogin{
+    height:350px;
+}
+li{
+    float: left;
+}
+
+nav{
+    width: 100;
+    background-color: #f2d53c;
+    height: 50px;
+    padding: 10px 10px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.otherlist{
+    float: right;
+    padding: 0 10px;
+}
+
+.passcorrect{
+    margin: 15% 10% 70% 20%;
+    color: red;
+}
+
+.signupmsg{
+    width: 40%;
+    height: 130px;
+    background-color: green;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+}

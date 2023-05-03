@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="newstyles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My ToDO application</h1>
+    </header>
+    <h1 class="date">Sign up to start creating your ToDos</h1>
+    <h2 class="submith2">Please submit your details below</h2>
+    <div class="mydiv">
+        <form action="">
+            <div class="innerdiv">
+            <div class="newdiv firstdiv">
+                <label for="firstname">firstname</label>
+                <input type="text"  name="firstname">
+            </div>
+            <div class="newdiv">
+                <label for="lastname">lastname</label>
+                <input type="text"  name="lastname">
+            </div>
+            <div class="newdiv">
+                <label for="email">Email</label>
+                <input type="text"  name="email">
+            </div>
+            <div class="newdiv">
+                <label for="password">password</label>
+                <input type="password"  name="password" id="password">
+            </div>
+            <div class="newdiv conpass">
+                <label for="conpassword">Confirm password</label>
+                <input type="password"  name="confirmpass" id="conpassword">
+            </div>
+        <div class="newdiv lastdiv">
+            <input type="submit"  name="" value="submit">
+        </div>
+    </div>
+        </form>
+    </div>
+    <div class="signupmsg">
+        <h2>Thank you very much for signing up. You would be redirected to the login page in 5secs</h2>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyB4PmEORL2PtndfgURwVJAn7oHp1zAndVM",
+          authDomain: "testing-javascript-c7bf3.firebaseapp.com",
+          projectId: "testing-javascript-c7bf3",
+          storageBucket: "testing-javascript-c7bf3.appspot.com",
+          messagingSenderId: "975678294174",
+          appId: "1:975678294174:web:3af9e78d67f7d23729138f",
+          measurementId: "G-EVWQSPD4Y8"
+        };
+      
+        // Initialize Firebase
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        console.log(db);
+      </script>
+    <script src="signup.js"></script>
+</body>
+</html>

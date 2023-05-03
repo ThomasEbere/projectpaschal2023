@@ -11,3 +11,7 @@ create sign up page
 upnext
 Add password field
 when user logs in, take user to page where they can view their own all todos, create todos, view pending todos,view completed todos and view todos inprogress 
+
+Upnext
+Create login and update todo document to reflect email. 
+pull todos based on who logs in. 
