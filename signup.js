@@ -1,11 +1,15 @@
-const form=document.querySelector('form');
+const form=document.querySelector('.signup');
 const boxes=document.querySelector('.mydiv');
 const newdates=document.querySelector('.date');
 const submith2=document.querySelector('.submith2');
 const sidediv=document.querySelector('.innerdiv');
 const signupmsg=document.querySelector('.signupmsg');
+const newform=document.querySelector('.login');
+const logindiv=document.querySelector('.innerdiv');
 
-form.addEventListener('submit', e=>{
+
+if (form){
+    form.addEventListener('submit', e=>{
     e.preventDefault();
     if(form.password.value!=form.confirmpass.value)
     {
@@ -27,6 +31,7 @@ form.addEventListener('submit', e=>{
         });
     }
 })
+}
 
 router=function(){
     newdates.style.setProperty('display', 'none');
@@ -39,3 +44,48 @@ router=function(){
 function timeout(){
      window.open('http://127.0.0.1:5500/dates.html');
 }
+
+async function getData(useremail, userpassword){
+    
+    db.collection('users').where('email', '==', useremail).get().then((result)=>{
+        result.forEach(items=>{
+            console.log(items.data().email,items.data().password)
+            if(items.data().email == useremail && items.data().password == userpassword)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+    }).catch((err)=>{
+        console.log(err);
+    })
+    
+}
+
+
+newform.addEventListener('submit', e =>{
+    e.preventDefault();
+    let useremail = newform.email.value;
+   let userpassword=newform.password.value;
+   console.log(userpassword);
+   console.log(useremail);
+   if(getData(useremail, userpassword)){
+    console.log("The user exist");
+   }
+   else{
+    logindiv.innerHTML+="<p> This user does not exit</p>"
+   }
+
+})
+
+
+// const getData= (email)=>{
+//     db.collection('users').where('email'== email).get().then((result)=>{
+//         console.log(result);
+//     }).catch((err)=>{
+//         console.log(err);
+//     })
+// }
