@@ -7,6 +7,12 @@ const gettodos=document.querySelector('.todos');
 const newform=document.querySelector('.users');
 const myitems=document.querySelector('.myitems');
 const mytodo = document.querySelector('.inner-todos');
+const email=localStorage.getItem('email');
+const pending=document.querySelector('.pending-todos');
+const firstName=document.querySelector('span');
+myFirstName=localStorage.getItem('firstName');
+
+firstName.innerText=myFirstName;
 
 
 if(sub){
@@ -24,10 +30,11 @@ sub.addEventListener('submit', e =>{
         Created_at:firebase.firestore.Timestamp.fromDate(now),
         DateofActivity:todoDate,
         Description:sub.exampleFormControlTextarea1.value,
-        Status:"Pending"
+        Status:"Pending",
+        created_by:email
     };
     console.log(todo);
-    db.collection('todos').add(todo).then((result)=>{
+    db.collection('newtodos').add(todo).then((result)=>{
         console.log(result);
     }).catch(err =>{
         console.log(err);
@@ -52,6 +59,21 @@ const display=(todo, id)=>{
     gettodos.innerHTML+=html;
 }
 
+const pendingtodos=(todo, id)=>{
+    let time = todo.Created_at.toDate();
+    let html=`<li data-id="${id}">
+    <div class="update"><h3>Activity</h3>${todo.Activity}</div>
+    <div class="update"><h3>Description</h3>${todo.Description}</div>
+    <div class="update"><h3>Status</h3>${todo.Status}</div>
+    <div class="update"><h3>Execution Date</h3>${todo.DateofActivity}</div>
+    <div><h3>Created Date</h3>${time}</div>
+    <button class ="btn btn-danger btn-sm my-2">Delete</button>
+    <button class ="btn btn-secondary btn-sm my-2">update</button>
+    <button class ="btn btn-secondary btn-sm my-2 save">save</button>
+    </li>`;
+    pending.innerHTML+=html;
+}
+
 
 
 const deletetodo=(id)=>{
@@ -64,36 +86,38 @@ const deletetodo=(id)=>{
     });
 }
 
-db.collection('todos').onSnapshot(snapshot=>{
+if(db)
+{
+db.collection('newtodos').where('created_by', '==',email).onSnapshot(snapshot=>{
+        snapshot.docChanges().forEach(change=>{
+            const doc=change.doc;
+            if(change.type==='added'){
+                if(gettodos){
+                display(doc.data(), doc.id);
+                }
+            }
+            else if(change.type === 'removed')
+            {
+                console.log(change.type);
+                deletetodo(doc.id);
+            }
+        })
+    });
+}
+
+db.collection('newtodos').where('Status', '==','Pending').orderBy('Created_at').onSnapshot(snapshot=>{
     snapshot.docChanges().forEach(change=>{
         const doc=change.doc;
-        if(change.type==='added'){
-            if(gettodos){
-            display(doc.data(), doc.id);
-            }
-        }
-        else if(change.type === 'removed')
+        if(change.type==='added')
         {
-            console.log(change.type);
+            pendingtodos(doc.data(), doc.id);
+        }else if(change.type==='removed')
+        {
             deletetodo(doc.id);
         }
+       
     })
 });
-// const unsub= db.collection('todos').where('Status', '==','Pending').orderBy('Created_at').onSnapshot(snapshot=>{
-//     snapshot.docChanges().forEach(change=>{
-//         const doc=change.doc;
-//         if(change.type==='added')
-//         {
-//             display(doc.data(), doc.id);
-//         }else if(change.type==='removed')
-//         {
-//             deletetodo(doc.id);
-//         }
-       
-//     })
-//     }).catch((err)=>{
-//         console.log(err);
-// });
 
 
 // const fetchdata = ()=>
@@ -212,4 +236,10 @@ if (gettodos) {
 }
     
 
+function getEmail(){
+    let newEmail= localStorage.getItem('email');
+    console.log(newEmail);
+}
+
+getEmail();
 

@@ -46,23 +46,28 @@ function timeout(){
 }
 
 async function getData(useremail, userpassword){
-    
-    db.collection('users').where('email', '==', useremail).get().then((result)=>{
+    let x=false;
+     const data =db.collection('users').where('email', '==', useremail).get().then((result)=>{
         result.forEach(items=>{
-            console.log(items.data().email,items.data().password)
+            // console.log(items.data().email,items.data().password)
             if(items.data().email == useremail && items.data().password == userpassword)
             {
-                return true;
+                window.open('http://127.0.0.1:5500/newindex.html'); 
+                localStorage.setItem('email', useremail);
+                localStorage.setItem('firstName', items.data().firstName);
             }
-            else
-            {
-                return false;
+            else{
+                logindiv.innerHTML+=`<p style="color:red;"> Wrong Credentials. Please Try again</p>`;
             }
+            
         });
+    
     }).catch((err)=>{
         console.log(err);
     })
-    
+
+    newdata=await data;
+    console.log(newdata);
 }
 
 
@@ -72,13 +77,7 @@ newform.addEventListener('submit', e =>{
    let userpassword=newform.password.value;
    console.log(userpassword);
    console.log(useremail);
-   if(getData(useremail, userpassword)){
-    console.log("The user exist");
-   }
-   else{
-    logindiv.innerHTML+="<p> This user does not exit</p>"
-   }
-
+  getData(useremail, userpassword);
 })
 
 

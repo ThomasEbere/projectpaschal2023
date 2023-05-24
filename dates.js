@@ -17,15 +17,15 @@
 // myName=localStorage.getItem('name');
 // age=localStorage.getItem('age');
 
-localStorage.removeItem('name');
-localStorage.removeItem('age');
+// localStorage.removeItem('name');
+// localStorage.removeItem('age');
 
 
-const form=document.querySelector('form');
-form.addEventListener('submit', e =>{
-    e.preventDefault();
-    localStorage.setItem('firstname', form.firstname.value);
-    localStorage.setItem('lastname', form.lastname.value);
-    form.firstname.value;
-    form.lastname.value;
-});
+// const form=document.querySelector('form');
+// form.addEventListener('submit', e =>{
+//     e.preventDefault();
+//     localStorage.setItem('firstname', form.firstname.value);
+//     localStorage.setItem('lastname', form.lastname.value);
+//     form.firstname.value;
+//     form.lastname.value;
+// });

@@ -13,5 +13,8 @@ Add password field
 when user logs in, take user to page where they can view their own all todos, create todos, view pending todos,view completed todos and view todos inprogress 
 
 Upnext
-Create login and update todo document to reflect email. 
-pull todos based on who logs in. 
+Dont add db to newindex.html
+use localStorage to fetch and set email
+pull data using email
+restructure create todos and get todos 
+
