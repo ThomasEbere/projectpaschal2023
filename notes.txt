@@ -13,8 +13,6 @@ Add password field
 when user logs in, take user to page where they can view their own all todos, create todos, view pending todos,view completed todos and view todos inprogress 
 
 Upnext
-Dont add db to newindex.html
-use localStorage to fetch and set email
-pull data using email
-restructure create todos and get todos 
+Check what is going on with update todos and delete todos for pending todo page
+fetch pending todos by date 
 

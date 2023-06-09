@@ -10,9 +10,10 @@ const mytodo = document.querySelector('.inner-todos');
 const email=localStorage.getItem('email');
 const pending=document.querySelector('.pending-todos');
 const firstName=document.querySelector('span');
-myFirstName=localStorage.getItem('firstName');
+const myFirstName=localStorage.getItem('firstName');
 
-firstName.innerText=myFirstName;
+console.log(myFirstName);
+
 
 
 if(sub){
@@ -59,6 +60,8 @@ const display=(todo, id)=>{
     gettodos.innerHTML+=html;
 }
 
+
+
 const pendingtodos=(todo, id)=>{
     let time = todo.Created_at.toDate();
     let html=`<li data-id="${id}">
@@ -73,6 +76,7 @@ const pendingtodos=(todo, id)=>{
     </li>`;
     pending.innerHTML+=html;
 }
+
 
 
 
@@ -234,6 +238,69 @@ if (gettodos) {
         }
     });
 }
+
+if (pending) {
+    pending.addEventListener('click', e =>
+    {
+        if(e.target.tagName ==='BUTTON')
+        {
+            if(e.target.childNodes[0].data === 'Delete'){ 
+                console.log("delete got clicked");
+                const id=e.target.parentElement.getAttribute('data-id');
+                console.log(id);
+                db.collection('newtodos').doc(id).delete();
+            }
+            else if (e.target.childNodes[0].data === 'update'){
+                const items=document.querySelectorAll('li');
+                const newid=e.target.parentElement.getAttribute('data-id');
+                items.forEach(item=>{
+                    if(item.getAttribute('data-id')==newid){
+                        const myinitems=(item.getElementsByTagName('div'));
+                        for(let i=0; i<myinitems.length, i<arrayelement.length; i++)
+                        {
+                        arrayelement[i]=myinitems[i].firstChild.nextSibling.data
+                        }
+                        console.log(arrayelement);
+                        console.log(arrayelement[4]);
+                        }
+                    })
+                    mytodo.remove();
+                    myitems.innerText="Update your todos";
+                    newform.style.setProperty('display','block');
+                    subb.activity.value=(arrayelement[0]);
+                    subb.exampleFormControlTextarea1.value=(arrayelement[1]);
+                    subb.startDate.value=(arrayelement[3]);
+                    subb.addEventListener('submit', e=>{
+                        e.preventDefault();
+                        console.log(subb.activity.value);
+                        console.log(subb.exampleFormControlTextarea1.value);
+                        console.log(subb.startDate.value);
+                        console.log(subb.status.value);
+
+                        let newString=new Date(arrayelement[4]).toISOString();
+                        let mystring=firebase.firestore.Timestamp.fromDate(new Date(arrayelement[4]));
+                        console.log(newString);
+                        console.log("This is the date time value here "+mystring);
+                        const newTodo={  
+                            Activity:subb.activity.value,
+                            Created_at:mystring,
+                            DateofActivity:subb.startDate.value,
+                            Description:subb.exampleFormControlTextarea1.value,
+                            Status:subb.status.value
+                        };
+                        console.log(newTodo);
+                        db.collection('newtodos').doc(newid).update(newTodo).then((result)=>{
+                            console.log(result);
+                        }).catch(err =>{
+                            console.log(err);
+                        });
+                        getpending();
+                    })
+                    myitems.innerText="Update your todos";                                           
+            }
+        }
+    });
+}
     
 
 function getEmail(){
@@ -243,3 +310,8 @@ function getEmail(){
 
 getEmail();
 
+firstName.innerText=myFirstName;
+
+function getpending(){
+    window.open('http://127.0.0.1:5500/pending.html');
+}
